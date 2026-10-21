@@ -13,6 +13,7 @@ data/processed/*
 !data/processed/.gitkeep
 models/*.joblib
 models/*.pkl
+models/*.json
 reports/metrics.json
 
 # Editor / OS
