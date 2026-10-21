@@ -8,7 +8,7 @@ import numpy as np
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score
 from sklearn.model_selection import GroupShuffleSplit
 
-from oasis_ai.pipeline import TARGET, build_pipeline, clean_table, read_table, save_model
+from src.oasis_ai.pipeline import TARGET, build_pipeline, clean_table, read_table, save_model
 
 
 def main() -> None:
@@ -62,9 +62,12 @@ def main() -> None:
         **metrics,
         "feature_columns": X.columns.tolist(),
         "numeric_columns": X.select_dtypes(include=[np.number]).columns.tolist(),
-        "numeric_defaults": X.select_dtypes(include=[np.number]).median().fillna(0).to_dict(),
+        "numeric_defaults": {
+            col: float(value)
+            for col, value in X.select_dtypes(include=[np.number]).median().fillna(0).items()
+        },
         "categories": categories,
-        "class_distribution": y.value_counts().to_dict(),
+        "class_distribution": {str(label): int(count) for label, count in y.value_counts().items()},
         "data_rows": int(len(X)),
     }
     save_model(model, X.columns.tolist(), args.output, metadata)
