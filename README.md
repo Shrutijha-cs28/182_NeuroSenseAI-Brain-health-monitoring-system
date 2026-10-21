@@ -1,6 +1,6 @@
-# Alzheimer’s NeuroSense AI — research prototype
+# 182_NeuroSenseAI-Brain-health-monitoring-system
 
-A small, local Streamlit demo that preprocesses the OASIS longitudinal demographics spreadsheet and trains a subject-level, tabular baseline to predict the spreadsheet's `Group` label. It is a learning/research prototype, **not a diagnostic or screening tool**.
+This is a third-year NeuroSenseAI project exploring Alzheimer's and Parkinson's. The current implemented prototype is a small, local Streamlit demo that preprocesses the OASIS longitudinal demographics spreadsheet and trains a subject-level, tabular baseline to predict the spreadsheet's `Group` label. It is a learning/research prototype, **not a diagnostic or screening tool**.
 
 ## What this prototype does
 
