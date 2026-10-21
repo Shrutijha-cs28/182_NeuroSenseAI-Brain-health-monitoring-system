@@ -4,7 +4,7 @@ __pycache__/
 .venv/
 venv/
 
-# Local datasets and trained artifacts (do not commit participant data)
+# Local datasets and trained artifacts (OASIS scans/derivatives stay access-controlled)
 data/raw/*
 data/interim/*
 data/processed/*

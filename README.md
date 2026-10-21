@@ -14,6 +14,12 @@ On the supplied spreadsheet, the current fixed subject-level holdout run produce
 
 The current input file is OASIS-2 longitudinal demographics. OASIS describes this cohort as 150 participants with 373 imaging sessions. The `.tar.gz` files named `oasis_cross-sectional_disc*.tar.gz` are OASIS-1 cross-sectional MRI volumes, a different collection; this first prototype does not use those MRI images. The browser `.crdownload` files are incomplete downloads and are not inputs. See the [OASIS-2 description](https://sites.wustl.edu/oasisbrains/home/oasis-2/) and its [dataset paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC2895005/).
 
+### Keep OASIS scans local
+
+The OASIS terms require participant data to remain on access-controlled storage for the authorized user. This GitHub repository is public, so do not commit or upload scans, participant-level derived features, or the source spreadsheet. The repository includes a script to extract only spreadsheet-matched `RAW/*.nifti.hdr` and `RAW/*.nifti.img` files to `data/raw/oasis2_mri/`; `.gitignore` excludes this folder. OASIS recommends keeping its separate dataset projects independent. See the [OASIS data-use terms](https://sites.wustl.edu/oasisbrains/home/access/) and [OASIS-2 download information](https://sites.wustl.edu/oasisbrains/home/oasis-2/).
+
+The supplied `OAS2_RAW_PART2.tar.gz` matched 164 spreadsheet sessions and yielded 1,192 NIfTI files (about 20 GB uncompressed). This is only part of OASIS-2; OASIS also lists a separate `OAS2_RAW_PART1.tar.gz` archive. The current model still uses the demographics table only, so the MRI scans are staged locally for a later image-feature workflow and have not yet been used for training.
+
 ## Run locally on Windows
 
 Open PowerShell in this project folder:
@@ -32,6 +38,14 @@ python -m src.train --input "C:\Users\shrut\Downloads\oasis_longitudinal_demogra
 ```
 
 The script writes a cleaned local CSV under `data/processed/`, model artifacts under `models/`, and evaluation metrics under `reports/`. Those data and model artifacts are ignored by Git by default.
+
+To extract the matching MRI scans from a locally downloaded OASIS-2 archive, run this from the project folder:
+
+```powershell
+python -m src.extract_oasis2 --archive "C:\Users\shrut\Downloads\OAS2_RAW_PART2.tar.gz" --table "C:\Users\shrut\Downloads\oasis_longitudinal_demographics-8d83e569fa2e2d30.xlsx"
+```
+
+The extraction can take a while because the tool must read through the compressed archive. The extracted NIfTI files and manifest stay local and are ignored by Git. The current model remains the tabular baseline; MRI-based feature extraction and validation are a separate next step.
 
 Start the interactive demo:
 
