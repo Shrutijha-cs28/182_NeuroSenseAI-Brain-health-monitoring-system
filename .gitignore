@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local datasets and trained artifacts (do not commit participant data)
+data/raw/*
+data/interim/*
+data/processed/*
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
+models/*.joblib
+models/*.pkl
+reports/metrics.json
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
