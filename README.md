@@ -10,6 +10,8 @@ A small, local Streamlit demo that preprocesses the OASIS longitudinal demograph
 - Holds out whole participants, so visits from the same person do not occur in both train and evaluation sets.
 - Trains a class-balanced logistic-regression baseline, saves a local model, and displays an exploratory prediction form.
 
+On the supplied spreadsheet, the current fixed subject-level holdout run produced **61.2% accuracy** and **0.540 macro F1** across 38 held-out participants (112 participants in training). These are preliminary estimates on this small cohort, not evidence of clinical performance. The three labels in this file are `Nondemented`, `Demented`, and `Converted`.
+
 The current input file is OASIS-2 longitudinal demographics. OASIS describes this cohort as 150 participants with 373 imaging sessions. The `.tar.gz` files named `oasis_cross-sectional_disc*.tar.gz` are OASIS-1 cross-sectional MRI volumes, a different collection; this first prototype does not use those MRI images. The browser `.crdownload` files are incomplete downloads and are not inputs. See the [OASIS-2 description](https://sites.wustl.edu/oasisbrains/home/oasis-2/) and its [dataset paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC2895005/).
 
 ## Run locally on Windows
