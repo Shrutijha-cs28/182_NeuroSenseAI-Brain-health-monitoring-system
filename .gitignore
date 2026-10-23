@@ -14,8 +14,7 @@ data/processed/*
 models/*.joblib
 models/*.pkl
 models/*.json
-reports/metrics.json
-reports/alzheimer_metrics.json
+reports/*.json
 
 # Editor / OS
 .DS_Store
