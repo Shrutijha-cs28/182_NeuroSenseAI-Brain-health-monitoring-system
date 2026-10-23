@@ -47,6 +47,18 @@ python -m src.extract_oasis2 --archive "C:\Users\shrut\Downloads\OAS2_RAW_PART2.
 
 The extraction can take a while because the tool must read through the compressed archive. The extracted NIfTI files and manifest stay local and are ignored by Git. The current model remains the tabular baseline; MRI-based feature extraction and validation are a separate next step.
 
+## Experimental Alzheimer and MRI modules
+
+The repository also contains an experimental XGBoost/SHAP binary classifier (`src/oasis_ai/alzheimer_model.py` and `src/train_alzheimer.py`) and a basic NIfTI loading helper (`src/oasis_ai/mri_processor.py`). The classifier is not connected to the Streamlit app and is not a validated clinical model. It requires a local, authorized demographics CSV with columns including `Subject ID`, `Group`, `Age`, `EDUC`, `SES`, `MMSE`, `eTIV`, `nWBV`, and `ASF`; MRI processing requires scans already extracted locally. Do not commit participant data, generated model files, or derived participant-level data.
+
+To try the experimental classifier after installing requirements, save a CSV with the required columns as `data/interim/oasis.csv` and run:
+
+```powershell
+python -m src.train_alzheimer --data data/interim/oasis.csv
+```
+
+The trained model and evaluation output are written locally under `models/` and `reports/`.
+
 Start the interactive demo:
 
 ```powershell
